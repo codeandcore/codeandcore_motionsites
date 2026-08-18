@@ -1,0 +1,322 @@
+/* ── CursorImageTrail Stylesheet ────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800;900&family=Space+Grotesk:wght@500;700&display=swap');
+
+.cit-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #08080a;
+  color: #ffffff;
+  padding: 6rem 2rem;
+  user-select: none;
+  cursor: crosshair;
+  box-sizing: border-box;
+}
+
+/* Ambient glow & grid overlay */
+.cit-bg-glow {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(82, 39, 255, 0.12) 0%, rgba(13, 10, 24, 0) 65%),
+    radial-gradient(circle at 80% 20%, rgba(255, 100, 200, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(56, 189, 248, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cit-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: center center;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 80%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* DOM Card Layer */
+.cit-cards-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 10;
+}
+
+/* Dynamic floating editorial card */
+.cit-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform, opacity;
+  pointer-events: none;
+  transform-origin: center center;
+  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.75)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+}
+
+.cit-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #151518;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.35);
+}
+
+.cit-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.03);
+}
+
+.cit-card__glass-reflection {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.25) 100%);
+  pointer-events: none;
+}
+
+.cit-card__meta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.cit-card__title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cit-card__category {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Central Editorial Typography Content */
+.cit-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cit-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-bottom: 2rem;
+}
+
+.cit-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+  animation: cit-pulse 2s infinite ease-in-out;
+}
+
+.cit-badge__text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cit-heading {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 900;
+  font-size: clamp(3.2rem, 9.5vw, 8.8rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  margin: 0;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.cit-heading__line {
+  display: block;
+  background: linear-gradient(180deg, #ffffff 15%, rgba(255, 255, 255, 0.65) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cit-subheading {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.25rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 520px;
+  line-height: 1.55;
+  margin: 2.2rem auto 2.5rem;
+}
+
+.cit-hint-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.cit-hint-pill__icon {
+  color: #8b5cf6;
+  animation: cit-float-icon 2s ease-in-out infinite;
+}
+
+/* Corner Accents */
+.cit-corner {
+  position: absolute;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.3);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.cit-corner--tl { top: 2rem; left: 2.5rem; }
+.cit-corner--tr { top: 2rem; right: 2.5rem; }
+.cit-corner--bl { bottom: 2rem; left: 2.5rem; }
+.cit-corner--br { bottom: 2rem; right: 2.5rem; }
+
+/* Mobile Floating Showcase */
+.cit-mobile-showcase {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.cit-mobile-card {
+  position: absolute;
+  width: 140px;
+  overflow: hidden;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  opacity: 0.7;
+}
+
+.cit-mobile-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cit-mobile-card__badge {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 0.6rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.cit-mobile-card--1 { top: 12%; left: 6%; }
+.cit-mobile-card--2 { top: 18%; right: 6%; }
+.cit-mobile-card--3 { bottom: 15%; left: 8%; }
+.cit-mobile-card--4 { bottom: 18%; right: 8%; }
+.cit-mobile-card--5 { top: 48%; left: 3%; display: none; }
+.cit-mobile-card--6 { top: 52%; right: 3%; display: none; }
+
+@keyframes cit-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.6; }
+}
+
+@keyframes cit-float-icon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 900px) {
+  .cit-corner { display: none; }
+  .cit-heading {
+    font-size: clamp(2.8rem, 11vw, 5.5rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .cit-section {
+    padding: 4rem 1.2rem;
+    min-height: 85vh;
+  }
+  .cit-mobile-card {
+    width: 110px;
+    opacity: 0.55;
+  }
+  .cit-subheading {
+    font-size: 0.95rem;
+    margin: 1.5rem auto 2rem;
+  }
+}
