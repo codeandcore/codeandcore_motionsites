@@ -1,0 +1,195 @@
+/* ── Hero layout ──────────────────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #07070f;
+}
+
+/* The LiquidEther canvas fills the entire hero */
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Dark radial overlay so text is legible over the fluid */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 50%,
+    transparent 30%,
+    rgba(7, 7, 15, 0.72) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Bottom vignette */
+.hero__vignette {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to top, #07070f 0%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Content ──────────────────────────────────────────────── */
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 780px;
+}
+
+.hero__eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 159, 252, 0.8);
+  background: rgba(82, 39, 255, 0.15);
+  border: 1px solid rgba(82, 39, 255, 0.3);
+  border-radius: 999px;
+  padding: 0.35em 1.1em;
+  backdrop-filter: blur(8px);
+}
+
+.hero__title {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #f0eeff;
+  /* Subtle text-shadow to lift it off the fluid */
+  text-shadow:
+    0 0 80px rgba(82, 39, 255, 0.5),
+    0 2px 32px rgba(0, 0, 0, 0.6);
+}
+
+.hero__title em {
+  font-style: normal;
+  background: linear-gradient(135deg, #5227FF 0%, #FF9FFC 60%, #B497CF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__sub {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 400;
+  color: rgba(240, 238, 255, 0.55);
+  max-width: 440px;
+  line-height: 1.65;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  padding: 0.75em 2em;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, #5227FF, #8b5cf6);
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(82, 39, 255, 0.45);
+}
+
+.btn--primary:hover {
+  box-shadow: 0 8px 32px rgba(82, 39, 255, 0.65);
+  background: linear-gradient(135deg, #6b3fff, #9d72ff);
+}
+
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(240, 238, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Responsive tweaks ────────────────────────────────────── */
+@media (max-width: 600px) {
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* ── ScrollExpand Section ─────────────────────────────────── */
+.scroll-expand-section {
+  width: 100%;
+  background: var(--color-bg);
+}
+
+/* In useWindowScroll mode the component sets its own track height via JS */
+.scroll-expand-section__wrap {
+  width: 100%;
+}
+
+/* Overlay content typography ─────────────────────────────── */
+.scroll-expand-section__overlay-title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.scroll-expand-section__overlay-sub {
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 480px;
+  line-height: 1.65;
+}
