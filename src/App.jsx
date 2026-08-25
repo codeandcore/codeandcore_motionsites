@@ -2,6 +2,10 @@ import LiquidEther from './components/LiquidEther/LiquidEther';
 import ScrollExpand from './components/ScrollExpand/ScrollExpand';
 import AnimatedEcosystem from './components/AnimatedEcosystem/AnimatedEcosystem';
 import CursorImageTrail from './components/CursorImageTrail/CursorImageTrail';
+import CyberpunkHero from './components/CyberpunkHero/CyberpunkHero';
+import StatsSection from './components/StatsSection/StatsSection';
+
+import motionBg from './assets/motion_bg.mp4';
 
 import './App.css';
 
@@ -33,16 +37,16 @@ export default function App() {
 
         {/* Overlay content */}
         <div className="hero__content">
-          <span className="hero__eyebrow">Web Development</span>
+          <span className="hero__eyebrow">Web Design &amp; Digital Engineering</span>
           <h1 className="hero__title">
-            Code&nbsp;<em>and&nbsp;Core</em>
+            Code&nbsp;<em>and&nbsp;</em>Core
           </h1>
           <p className="hero__sub">
-            Move your cursor — or just watch the flow.
+            We transform your ideas into top-performing digital products that your customers truly value.
           </p>
           <div className="hero__actions">
-            <button id="cta-primary" className="btn btn--primary">Explore work</button>
-            <button id="cta-secondary" className="btn btn--ghost">Learn more</button>
+            <a href="#technologies" id="cta-primary" className="btn btn--primary">Explore work</a>
+            <a href="https://codeandcore.com/contact-us/" target="_blank" rel="noopener noreferrer" id="cta-secondary" className="btn btn--ghost">Let's talk</a>
           </div>
         </div>
 
@@ -54,7 +58,7 @@ export default function App() {
       <section className="scroll-expand-section">
         <div className="scroll-expand-section__wrap">
           <ScrollExpand
-            src="https://bunny-wp-pullzone-lsnby8erzc.b-cdn.net/media/2026/03/Happy-10th-Anniversary-Code-and-Core-1.mp4"
+            src={motionBg}
             mediaType="video"
             scrollHint="Scroll"
             useWindowScroll
@@ -63,10 +67,9 @@ export default function App() {
             holdDistance={0.35}
             overlayScrim={0.45}
           >
-            {/* <h2 className="scroll-expand-section__overlay-title">Every pixel, everywhere</h2>
-            <p className="scroll-expand-section__overlay-sub">
-              The frame opens up as you scroll and hands the whole stage to your media.
-            </p> */}
+            <h2 className="text-4xl md:text-5xl lg:text-[76px] font-bold text-white tracking-tighter drop-shadow-2xl text-center px-4">
+              Turn Your Ideas Into Industry-Leading Technologies
+            </h2>
           </ScrollExpand>
         </div>
       </section>
@@ -76,6 +79,13 @@ export default function App() {
 
       {/* ── Animated Ecosystem Hero ─────────────────────────── */}
       <AnimatedEcosystem />
+
+      {/* ── Cyberpunk Augmented Self Hero Section ──────────── */}
+      <CyberpunkHero />
+
+      {/* ── Stats Section ───────────────────────────────────── */}
+      <StatsSection />
     </>
   );
 }
+

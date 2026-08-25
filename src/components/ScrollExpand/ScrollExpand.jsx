@@ -88,9 +88,9 @@ const ScrollExpand = ({
     }
 
     if (overlayRef.current) {
-      const inn = smoothstep(0.68, 1, p);
-      overlayRef.current.style.opacity = `${inn}`;
-      overlayRef.current.style.transform = `translate3d(0, ${18 * (1 - inn)}px, 0)`;
+      overlayRef.current.style.opacity = '1';
+      const startScale = c.startWidth / 100;
+      overlayRef.current.style.transform = `scale(${startScale + (1.1 - startScale) * e})`;
     }
   }, []);
 
